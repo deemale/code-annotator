@@ -16,8 +16,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "code-annotator.helloWorld",
-        "title": "Hello World"
+        "command": "code-annotator.clearAnnotations",
+        "title": "Clear Annotations from File"
       },
       {
         "command": "code-annotator.addAnnotation",

@@ -12,7 +12,7 @@ export function updateDecorations() {
     const text = activeEditor.document.getText();
     const foundAnnotations: vscode.DecorationOptions[] = [];
   
-    storage.annotations.forEach((annotation: Annotation) => {
+    storage.annotations?.forEach((annotation: Annotation) => {
       let match = annotation.lineRegex.exec(text);
   
       if (match) {
