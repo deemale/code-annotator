@@ -1,11 +1,15 @@
 {
   "name": "code-annotator",
   "displayName": "code-annotator",
-  "description": "Make it possible to set decorations for a file in the gutter ",
+  "description": "Makes it possible to set code annotations so that analyzing code becomes easier",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.51.0"
   },
+  "extensionKind": [
+		"ui",
+		"workspace"
+	],
   "categories": [
     "Other"
   ],
@@ -24,6 +28,15 @@
         "title": "Add Annotation"
       }
     ],
+    "views": {
+			"explorer": [
+				{
+					"type": "webview",
+					"id": "codeAnnotator.annotationsView",
+					"name": "Code Annotations"
+				}
+			]
+		},
     "menus": {
       "editor/context": [
         {

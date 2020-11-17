@@ -1,0 +1,40 @@
+.annotation-list {
+	list-style: none;
+	padding: 0;
+}
+
+.annotation-entry {
+	width: 100%;
+	display: flex;
+	margin-bottom: 0.4em;
+	border: 1px solid var(--vscode-input-border);
+}
+
+.annotation-preview {
+	width: 100%;
+	color:white;
+	font-size:10px;
+	background:black;
+	border-width:5px;
+	border: 2px solid gray;
+}
+
+.annotation-preview:hover {
+	outline: inset white;
+}
+
+.annotation-input {
+	display: block;
+	flex: 1;
+	width: 100%;
+	color: var(--vscode-input-foreground);
+	background-color: var(--vscode-input-background);
+	border: none;
+	padding: 0 0.6em;
+}
+
+.add-annotation-button {
+	display: block;
+	border: none;
+	margin: 0 auto;
+}
