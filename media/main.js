@@ -28,14 +28,26 @@
                 }
         }
     });
-   
+
+    function createElement(str) {
+        const element = document.createElement('div');
+        element.innerHTML = str;
+        return element.firstChild;
+    }
+
     function updateAnnotationList(annotations) {
         const div = document.querySelector('.annotation-list');
         div.textContent = '';
         for (const annotation of annotations) {
             const annotationPreview = document.createElement('div');
+            annotationPreview.className = 'annotation';
             annotationPreview.id = "annotation-" + annotation.line;
-            annotationPreview.textContent = " Line: " + `${annotation.line}` + "  " + `${annotation.annotation.note}`;
+
+            const lineNumber = createElement(`<div class="line-number"><label>Line:</label>${annotation.line}</div>`);
+            const annotationText = createElement(`<div class="annotation-text">${annotation.annotation.note}</div>`);
+
+            annotationPreview.appendChild(lineNumber);
+            annotationPreview.appendChild(annotationText);
             div.appendChild(annotationPreview);
         }
 
@@ -53,7 +65,7 @@
         let i = 0;
         for( i=0; i< annotationDivs.length; i++ )
         {
-            if(annotationDivs[i].id == "annotation-" + (lineNumber + 1)) {
+            if(annotationDivs[i].id === "annotation-" + (lineNumber + 1)) {
                 annotationDivs[i].classList.add('annotation-selected');
                 window.scroll(0, annotationDivs[i].offsetTop);
             } else {

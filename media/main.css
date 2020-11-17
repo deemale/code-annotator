@@ -1,21 +1,46 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+
 .annotation-list {
-	padding: 0px;
-  	width: 100%;
-	color:gray;
-	font-size:10px;
+	padding: 0;
+	margin: 0;
+	font-size: var(--vscode-font-size);
+	color: var(--vscode-foreground);
 }
 
-.annotation-list div{
-  padding:5px;
-  margin:0px 0px 0px 0px;
-  border: 1px solid gray;
+.annotation-list .annotation {
+  padding: 0.50em 1.0em;
+	margin: 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+	line-height: 1.2em;
 }
 
-.annotation-list div:hover {
-	outline: solid white;
-	outline-width:1px;
+.annotation-list .annotation-list:last-child {
+	border-bottom: 0;
+}
+
+.annotation-list .annotation:hover {
+	background-color: var(--vscode-editor-hoverHighlightBackground);
 }
 
 .annotation-selected {
-	color:white;
+	background-color: var(--vscode-list-activeSelectionBackground);
+	border-color: var(--vscode-editor-lineHighlightBorder);
+}
+
+.annotation .line-number {
+	text-transform: uppercase;
+	padding: 0 0 0.25em 0.25em;
+	float: right;
+	color: var(--vscode-editorCodeLens-foreground);
+}
+
+.annotation .line-number label {
+	padding: 0 0.25em 0 0;
+}
+
+.annotation .annotation-text {
+
 }
