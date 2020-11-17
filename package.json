@@ -26,6 +26,10 @@
       {
         "command": "code-annotator.addAnnotation",
         "title": "Add Annotation"
+      },
+      {
+        "command": "code-annotator.removeAnnotation",
+        "title": "Remove Annotation"
       }
     ],
     "views": {
@@ -42,6 +46,11 @@
         {
           "command": "code-annotator.addAnnotation",
           "group": "navigation"
+        },
+        {
+          "command": "code-annotator.removeAnnotation",
+          "group": "navigation",
+          "when": "cursorOnAnnotation == true"
         }
       ]
     }

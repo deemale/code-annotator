@@ -102,6 +102,22 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
+  vscode.window.onDidChangeTextEditorSelection(event => {
+    if (event.selections.length > 0) {
+      const lineNumber = event.selections[0].anchor.line;
+      const line = event.textEditor.document.lineAt(lineNumber);
+      const text = event.textEditor.document.getText(line.range);
+      const matches = storage.getAnnotationForString(text);
+
+      if (matches && matches.length > 0) {
+        vscode.commands.executeCommand('setContext', 'cursorOnAnnotation', true);
+      } else {
+        vscode.commands.executeCommand('setContext', 'cursorOnAnnotation', false); 
+      }
+      // TODO: Add logic to highlight sidebar item
+    }
+  });
+
   vscode.workspace.onDidChangeTextDocument(event => {
     if (vscode.window.activeTextEditor
         && event.document === vscode.window.activeTextEditor.document) {

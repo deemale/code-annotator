@@ -34,6 +34,10 @@ class AnnotationStorage {
     return this.storageInterface?.getCurrentAnnotations();
   }
 
+  getAnnotationForString(search: string): Array<Annotation> | undefined {
+    return this.annotations?.filter(annotation => annotation.lineRegex.test(search) ? true : false);
+  }
+
   addAnnotation(annotation: Annotation) {
     let currentAnnotations;
     if (currentAnnotations = this.annotations) {

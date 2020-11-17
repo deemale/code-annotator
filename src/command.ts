@@ -17,3 +17,13 @@ export async function addAnnotation() {
     vscode.commands.executeCommand('code-annotator.updateDecorations');
   }
 }
+
+export function removeAnnotation() {
+  let textEditor = vscode.window.activeTextEditor;
+
+  if (textEditor) {
+    // TODO: Implement removal
+
+    vscode.commands.executeCommand('code-annotator.updateDecorations');
+  }
+}
