@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { addAnnotation, removeAnnotation } from './command';
 import { updateDecorations } from './decorations';
-import { highlightAnnotation, updateAnnotations } from './annotations';
+import { highlightAnnotation, updateAnnotations, editAnnotation } from './annotations';
 import { storage, IStorageInterface, Annotation } from './storage';
 
 /**
@@ -165,7 +165,20 @@ class AnnotationsViewProvider implements vscode.WebviewViewProvider {
 		};
 
 		webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
-		this._webview = webviewView.webview;
+    this._webview = webviewView.webview;
+
+    // Handle messages from the webview
+    webviewView.webview.onDidReceiveMessage(
+      message => {
+        switch (message.command) {
+          case 'udpateAnnotation':
+            editAnnotation(message);
+            return;
+        }
+      },
+      undefined
+    );
+
 
 	}
 

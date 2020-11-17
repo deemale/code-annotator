@@ -36,3 +36,15 @@ export function highlightAnnotation(webview:vscode.Webview | undefined, lineNumb
     });
    }
 }
+
+export function editAnnotation(data:any) {
+  let currAnnotations = storage.annotations;
+  currAnnotations?.forEach((annotation: Annotation) => {
+      if (annotation.id == data.id) {
+        annotation.note = data.note;
+        storage.annotations = currAnnotations;
+        return;
+      }
+  });
+
+}

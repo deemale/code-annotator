@@ -42,6 +42,8 @@
             const annotationPreview = document.createElement('div');
             annotationPreview.className = 'annotation';
             annotationPreview.id = "annotation-" + annotation.line;
+            annotationPreview.setAttribute('data-annotation-Id', annotation.annotation.id);
+            annotationPreview.setAttribute('contenteditable', "true");
 
             const lineNumber = createElement(`<div class="line-number"><label>Line:</label>${annotation.line}</div>`);
             const annotationText = createElement(`<div class="annotation-text">${annotation.annotation.note}</div>`);
@@ -49,6 +51,14 @@
             annotationPreview.appendChild(lineNumber);
             annotationPreview.appendChild(annotationText);
             div.appendChild(annotationPreview);
+
+            annotationPreview.addEventListener("blur", function() {
+                vscode.postMessage({
+                    command: 'udpateAnnotation',
+                    note: this.childNodes[1].textContent,
+                    id: this.getAttribute('data-annotation-Id')
+                })
+              });
         }
 
         // Update the saved state
@@ -65,7 +75,7 @@
         let i = 0;
         for( i=0; i< annotationDivs.length; i++ )
         {
-            if(annotationDivs[i].id === "annotation-" + (lineNumber + 1)) {
+            if(annotationDivs[i].id == "annotation-" + (lineNumber + 1)) {
                 annotationDivs[i].classList.add('annotation-selected');
                 window.scroll(0, annotationDivs[i].offsetTop);
             } else {
