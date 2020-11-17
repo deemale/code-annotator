@@ -17,7 +17,7 @@
         const message = event.data; // The json data that the extension sent
         switch (message.type) {
             case 'addAnnotation':
-                {   
+                {
                     addAnnotation(message.annotations);
                     break;
                 }
@@ -53,7 +53,7 @@
         let i = 0;
         for( i=0; i< annotationDivs.length; i++ )
         {
-            if(annotationDivs[i].id == "annotation-" + lineNumber) {
+            if(annotationDivs[i].id == "annotation-" + (lineNumber + 1)) {
                 annotationDivs[i].classList.add('annotation-selected');
                 window.scroll(0, annotationDivs[i].offsetTop);
             } else {

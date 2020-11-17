@@ -14,7 +14,7 @@ export function updateAnnotations(webview:vscode.Webview | undefined) {
 
       if (match) {
         const position = activeEditor!.document.positionAt(match.index);
-        annotations.push({ line: position.line +1, annotation: annotation });
+        annotations.push({ line: position.line + 1, annotation: annotation });
       }
 
     });
