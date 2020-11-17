@@ -68,7 +68,10 @@ export function activate(context: vscode.ExtensionContext) {
   // Clear annotations from storage
   context.subscriptions.push(vscode.commands.registerCommand(
     'code-annotator.clearAnnotations',
-    () => persistence.resetStoredAnnotations(),
+    () => {
+      persistence.resetStoredAnnotations();
+      triggerUpdateAnnotations();
+    }
   ));
 
   // Command used to update the UI and re-render editor decorations
