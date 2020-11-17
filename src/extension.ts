@@ -25,7 +25,7 @@ class WorkspaceStorageInterface implements IStorageInterface {
       const stored: Array<Annotation> | undefined = this.context.workspaceState.get(documentName);
 
       if (stored) {
-        return stored.map(item => new Annotation(item.note, new RegExp(item.lineRegex)));
+        return stored.map(item => new Annotation(item.note, new RegExp(item.lineRegex), item.id));
       }
     }
 

@@ -1,6 +1,14 @@
 import * as vscode from 'vscode';
 import { storage, Annotation } from './storage';
 
+// Thanks stackoverflow
+const uuidv4 = () : string => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+};
+
 const escapeRegExp = (s: String) => {
   return s.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 };
@@ -12,8 +20,9 @@ export async function addAnnotation() {
   if (note && textEditor) {
     const currentLine = textEditor.document.lineAt(textEditor.selection.start.line);
     const text = escapeRegExp(textEditor.document.getText(currentLine.range));
+    const id = uuidv4();
 
-    storage.addAnnotation(new Annotation(note, new RegExp(text)));
+    storage.addAnnotation(new Annotation(note, new RegExp(text), id));
     vscode.commands.executeCommand('code-annotator.updateDecorations');
   }
 }

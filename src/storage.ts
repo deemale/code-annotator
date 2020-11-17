@@ -2,22 +2,25 @@ import * as vscode from "vscode";
 
 export class Annotation {
   note : String;
-  lineRegex: RegExp;
+  lineRegex : RegExp;
+  id : String;
 
-  constructor(note: String, lineRegex: RegExp) {
+  constructor(note: String, lineRegex: RegExp, id: String) {
     this.note = note;
     this.lineRegex = lineRegex;
+    this.id = id;
   }
 
   toSerializable() {
     return {
       note: this.note,
       lineRegex: this.lineRegex.source,
+      id: this.id,
     };
   }
 
   toString() {
-    return `[${this.lineRegex}, "${this.note}"]`;
+    return `[${this.id}, ${this.lineRegex}, "${this.note}"]`;
   }
 }
 
