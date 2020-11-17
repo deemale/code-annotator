@@ -186,8 +186,6 @@ class AnnotationsViewProvider implements vscode.WebviewViewProvider {
 			<div class="annotation-list">
 			</div>
 
-				<button class="add-annotation-button">Add Annotation</button>
-
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`;

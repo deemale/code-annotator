@@ -23,18 +23,13 @@
                 }
         }
     });
-
-    /**
-     * @param {Array<{ value: string }>} annotations
-     */
+   
     function updateAnnotationList(annotations) {
         const div = document.querySelector('.annotation-list');
         div.textContent = '';
         for (const annotation of annotations) {
             const annotationPreview = document.createElement('div');
-            annotationPreview.className = 'annotation-entry';
-            annotationPreview.textContent = `${annotation}`;
-            annotationPreview.className = 'annotation-preview';
+            annotationPreview.textContent = " Line: " + `${annotation.line}` + "  " + `${annotation.annotation.note}`;
             div.appendChild(annotationPreview);
         }
 
