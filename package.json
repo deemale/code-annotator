@@ -21,7 +21,7 @@
     "commands": [
       {
         "command": "code-annotator.clearAnnotations",
-        "title": "Clear Annotations from File"
+        "title": "Remove all Annotations from this File"
       },
       {
         "command": "code-annotator.addAnnotation",
@@ -45,11 +45,11 @@
       "editor/context": [
         {
           "command": "code-annotator.addAnnotation",
-          "group": "navigation"
+          "group": "0_annotations"
         },
         {
           "command": "code-annotator.removeAnnotation",
-          "group": "navigation",
+          "group": "0_annotations",
           "when": "cursorOnAnnotation == true"
         }
       ]
