@@ -55,6 +55,7 @@
         {
             if(annotationDivs[i].id == "annotation-" + lineNumber) {
                 annotationDivs[i].classList.add('annotation-selected');
+                window.scroll(0, annotationDivs[i].offsetTop);
             } else {
                 annotationDivs[i].classList.remove('annotation-selected');
             }
