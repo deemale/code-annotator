@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { addAnnotation } from './command';
+import { addAnnotation, removeAnnotation } from './command';
 import { updateDecorations } from './decorations';
 import { highlightAnnotation, updateAnnotations } from './annotations';
 import { storage, IStorageInterface, Annotation } from './storage';
@@ -59,10 +59,16 @@ export function activate(context: vscode.ExtensionContext) {
 
   storage.storageInterface = persistence;
 
-  // Context menu command to add a new annotation
+  // Add a new annotation
   context.subscriptions.push(vscode.commands.registerCommand(
     'code-annotator.addAnnotation',
     addAnnotation
+  ));
+
+  // Remove an annotation
+  context.subscriptions.push(vscode.commands.registerCommand(
+    'code-annotator.removeAnnotation',
+    removeAnnotation
   ));
 
   // Clear annotations from storage

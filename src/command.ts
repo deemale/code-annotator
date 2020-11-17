@@ -19,11 +19,26 @@ export async function addAnnotation() {
 }
 
 export function removeAnnotation() {
+  const isEqual = (a: Annotation, b: Annotation) => {
+    return a.note === b.note && a.lineRegex.source === b.lineRegex.source;
+  };
+
   let textEditor = vscode.window.activeTextEditor;
 
   if (textEditor) {
-    // TODO: Implement removal
+    const currentLine = textEditor.document.lineAt(textEditor.selection.start.line);
+    const text = textEditor.document.getText(currentLine.range);
+    const foundAnnotations = storage.getAnnotationForString(text);
+    const allAnnotations = storage.annotations;
 
-    vscode.commands.executeCommand('code-annotator.updateDecorations');
+    if (foundAnnotations && foundAnnotations.length > 0) {
+      const newAnnotations = allAnnotations?.filter(annotation => {
+        return foundAnnotations.findIndex(a => isEqual(a, annotation)) === -1;
+      });
+
+      storage.annotations = newAnnotations;
+
+      vscode.commands.executeCommand('code-annotator.updateDecorations');
+    }
   }
 }
