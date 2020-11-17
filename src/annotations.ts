@@ -7,20 +7,23 @@ export function updateAnnotations(webview:vscode.Webview | undefined) {
 
   if (activeEditor) {
     const text = activeEditor.document.getText();
-    const foundAnnotations: vscode.DecorationOptions[] = [];
 
-    let annotations:String[] = [];
+    let annotations:{line: number, annotation: Annotation}[] = [];
     storage.annotations?.forEach((annotation: Annotation) => {
-      let match = annotation.lineRegex.exec(text);
-      
+      const match = annotation.lineRegex.exec(text);
+
       if (match) {
-        annotations.push(annotation.note);
+        const position = activeEditor!.document.positionAt(match.index);
+        annotations.push({ line: position.line, annotation: annotation });
       }
 
     });
 
-    if(webview != null) {
-      webview.postMessage({ type: 'addAnnotation', annotations: annotations });
+    if(webview) {
+      webview.postMessage({
+        type: 'addAnnotation',
+        annotations: annotations.sort((a, b) => a.line - b.line)
+      });
      }
     }
   
