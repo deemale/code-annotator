@@ -21,6 +21,11 @@
                     addAnnotation(message.annotations);
                     break;
                 }
+            case 'highlightAnnotation':
+                {
+                    highlightAnnotation(message.lineNumber);
+                    break;
+                }
         }
     });
    
@@ -29,6 +34,7 @@
         div.textContent = '';
         for (const annotation of annotations) {
             const annotationPreview = document.createElement('div');
+            annotationPreview.id = "annotation-" + annotation.line;
             annotationPreview.textContent = " Line: " + `${annotation.line}` + "  " + `${annotation.annotation.note}`;
             div.appendChild(annotationPreview);
         }
@@ -40,6 +46,19 @@
     function addAnnotation(data) {
         annotations = data;
         updateAnnotationList(annotations);
+    }
+
+    function highlightAnnotation(lineNumber) {
+        const annotationDivs = document.querySelector('.annotation-list').getElementsByTagName('div');
+        let i = 0;
+        for( i=0; i< annotationDivs.length; i++ )
+        {
+            if(annotationDivs[i].id == "annotation-" + lineNumber) {
+                annotationDivs[i].classList.add('annotation-selected');
+            } else {
+                annotationDivs[i].classList.remove('annotation-selected');
+            }
+        }
     }
 }());
 

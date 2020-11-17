@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { addAnnotation } from './command';
 import { updateDecorations } from './decorations';
-import { updateAnnotations } from './annotations';
+import { highlightAnnotation, updateAnnotations } from './annotations';
 import { storage, IStorageInterface, Annotation } from './storage';
 
 /**
@@ -114,7 +114,7 @@ export function activate(context: vscode.ExtensionContext) {
       } else {
         vscode.commands.executeCommand('setContext', 'cursorOnAnnotation', false); 
       }
-      // TODO: Add logic to highlight sidebar item
+      highlightAnnotation(annotationsViewProvider.getWebview(), lineNumber);
     }
   });
 

@@ -1,9 +1,8 @@
 .annotation-list {
 	padding: 0px;
   	width: 100%;
-	color:white;
+	color:gray;
 	font-size:10px;
-	border: 1px solid gray;
 }
 
 .annotation-list div{
@@ -15,4 +14,8 @@
 .annotation-list div:hover {
 	outline: solid white;
 	outline-width:1px;
+}
+
+.annotation-selected {
+	color:white;
 }

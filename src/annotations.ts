@@ -26,5 +26,13 @@ export function updateAnnotations(webview:vscode.Webview | undefined) {
       });
      }
     }
-  
+}
+
+export function highlightAnnotation(webview:vscode.Webview | undefined, lineNumber:number) {
+  if(webview) {
+    webview.postMessage({
+      type: 'highlightAnnotation',
+      lineNumber: lineNumber
+    });
+   }
 }
